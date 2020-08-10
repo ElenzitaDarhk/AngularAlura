@@ -1,3 +1,6 @@
+Usar barrel dentro da mesma pasta do barrel da pau.
+
+--------------------------------------------------
 export function meuDecoratorDeClasse() {
 
     return function(constructor: any) {
@@ -19,3 +22,52 @@ export function meuDecoratorDeClasse() {
         return novo;
     }
 }
+-------------------------------------------------------
+"build-prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+Só que isso não funcina muito bem. O meu ficou em minificado pra sempre.
+Funciona sim eu que fiz cagada e atrinuí valor no if production
+
+------------------------------------------------------------
+configurar regra para fontes bootstrap
+            { 
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff' 
+            },
+            { 
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+            },
+            { 
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'file-loader' 
+            },
+            { 
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml' 
+            }  
+------------------------------------------------------------
+regras para loader de css
+
+            /* NOVA REGRA AQUI */
+            { 
+                test: /\.css$/, 
+                loader: 'style-loader!css-loader' 
+            }
+
+ou 
+
+            {
+                test: /\.css$/,
+                use: [ 'style-loader' , 'css-loader' ]
+            },
+ou
+
+            {
+                test: /\.css$/,
+                use: extractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
+            },
+------------------------------------------------------------
+Para subir para produção é a pasta dist completa.
