@@ -71,3 +71,13 @@ ou
             },
 ------------------------------------------------------------
 Para subir para produção é a pasta dist completa.
+------------------------------------------------------------
+Para subir o servidor do Angular
+ng serve --open
+o open abre o browser
+------------------------------------------------------------
+<ap-photo *ngFor="let photo of photos" [url]="photo.url" [description]="photo.description">    
+</ap-photo>
+
+Quando criar qualquer modulo já importat CommonModule.
+------------------------------------------------------------
